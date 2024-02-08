@@ -1,1 +1,10 @@
-from new
+pipeline{
+    agent any
+    stages{
+        stage("git checkout"){
+            steps{
+               git branch: 'new', credentialsId: 'github', url: 'https://github.com/Santhoskum/bangalore_demo.git'
+            }
+        }
+    }
+}
