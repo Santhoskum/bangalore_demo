@@ -9,7 +9,19 @@ trigger:
 pool: 
   vmImage: Hosted Agent
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- stage: A
+  jobs:
+    - job: A
+      displayName: JobA
+      steps:
+        - script: echo Job A
+ 
+- stage: B
+  jobs:
+    - job: B
+      displayName: JobB
+      steps:
+        - script: echo Job B
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/main'))
 
